@@ -1,33 +1,42 @@
 import React from 'react';
+import './PlayView.scss';
+import {connect} from "react-redux";
 
-const initialGrid = () => {
-  return [
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,1,1,0,0,0,0],
-    [0,0,0,0,1,1,0,0,0,0],
-    [0,0,1,1,1,1,1,1,0,0],
-    [0,0,1,1,1,1,1,1,0,0]
-  ];
-};
 
-function PlayView() {
-  const grid = initialGrid();
+
+function PlayView(state) {
+  console.log(state);
+  const grid = state.grid;
+
+  function column(row) {
+    let view = [];
+    for (let column = 0; column < grid[row].length; column++) {
+      const keyName = `${row}-${column}`;
+      if (grid[row][column]) {
+        view.push(<span className="cell fill" key={keyName}>&nbsp;</span>)
+      } else {
+        view.push(<span className="cell empty" key={keyName}>&nbsp;</span>)
+      }
+    }
+    return view;
+  }
+
+  function renderGrid() {
+    let view = [];
+    for (let row = 0; row < grid.length; row++) {
+      view.push(<div className="row" key={row}>{column(row)}</div>);
+    }
+    return view;
+  }
+
   return (
-    <main>
-
-    </main>
+    <div>
+      {renderGrid()}
+    </div>
   )
 }
+const mapStateToProps = state => ({ grid: state.grid });
 
-export default PlayView;
+
+
+export default connect(mapStateToProps)(PlayView);

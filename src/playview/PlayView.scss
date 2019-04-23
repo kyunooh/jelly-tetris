@@ -1,0 +1,13 @@
+.cell {
+  min-width: 45px;
+  min-height: 45px;
+  display: inline-block;
+  border: #eeeeee solid 1px;
+  &.empty {
+    background: lightgrey;
+  }
+
+  &.fill {
+    background: red;
+  }
+}
