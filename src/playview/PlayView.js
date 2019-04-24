@@ -4,9 +4,14 @@ import {connect} from "react-redux";
 
 
 
-function PlayView(state) {
-  console.log(state);
-  const grid = state.grid;
+function PlayView(store) {
+  const grid = store.grid.grid;
+
+  setTimeout(() => {
+    store.dispatch({
+      type: "TICK"
+    });
+  }, 1000);
 
   function column(row) {
     let view = [];
