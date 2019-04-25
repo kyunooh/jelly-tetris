@@ -1,42 +1,43 @@
 import React from 'react';
 import './PlayView.scss';
 import {connect} from "react-redux";
+import Row from "./Row";
 
 
 
 function PlayView(store) {
   const grid = store.grid.grid;
 
-  setTimeout(() => {
+  const tick = setTimeout(() => {
     store.dispatch({
       type: "TICK"
     });
   }, 1000);
 
-  function column(row) {
-    let view = [];
-    for (let column = 0; column < grid[row].length; column++) {
-      const keyName = `${row}-${column}`;
-      if (grid[row][column]) {
-        view.push(<span className="cell fill" key={keyName}>&nbsp;</span>)
-      } else {
-        view.push(<span className="cell empty" key={keyName}>&nbsp;</span>)
-      }
+  document.onkeydown = (e) => {
+    clearTimeout(tick);
+    if (e.key === "ArrowLeft") {
+      store.dispatch({
+        type: "MOVE_LEFT"
+      });
     }
-    return view;
-  }
 
-  function renderGrid() {
-    let view = [];
-    for (let row = 0; row < grid.length; row++) {
-      view.push(<div className="row" key={row}>{column(row)}</div>);
+    if (e.key === "ArrowRight") {
+      store.dispatch({
+        type: "MOVE_RIGHT"
+      });
     }
-    return view;
-  }
+
+    if (e.key === "ArrowDown") {
+      store.dispatch({
+        type: "TICK"
+      });
+    }
+  };
 
   return (
     <div>
-      {renderGrid()}
+      <Row grid={grid} />
     </div>
   )
 }
