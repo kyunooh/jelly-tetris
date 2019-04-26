@@ -1,10 +1,8 @@
-import React from 'react';
-import './PlayView.scss';
-import {connect} from "react-redux";
+import React from "react";
+import "./PlayView.scss";
+import { connect } from "react-redux";
 import Row from "./Row";
 import GameOver from "./GameOver";
-
-
 
 function PlayView(store) {
   const grid = store.grid;
@@ -15,7 +13,7 @@ function PlayView(store) {
     });
   }, 1000);
 
-  document.onkeydown = (e) => {
+  document.onkeydown = e => {
     clearTimeout(tick);
     if (e.key === "ArrowLeft") {
       store.dispatch({
@@ -36,13 +34,8 @@ function PlayView(store) {
     }
   };
 
-  return (
-    <div>
-      {store.gameOver ? <GameOver /> : <Row grid={grid} />}
-    </div>
-  )
+  return <div>{store.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
 }
-const mapStateToProps = state => ({...state.grid});
-
+const mapStateToProps = state => ({ ...state.grid });
 
 export default connect(mapStateToProps)(PlayView);

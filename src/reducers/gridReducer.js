@@ -19,20 +19,16 @@ const initialState = {
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
     [0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
     [0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
-    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0]]
+    [0, 0, 1, 1, 1, 1, 1, 1, 0, 0]
+  ]
 };
-
 
 const tetriminos = [
   [[2, 2, 2, 2]],
-  [[2, 2, 2],
-    [0, 0, 2]],
-  [[2, 2, 2],
-    [2, 0, 0]],
-  [[2, 2],
-    [2, 2]],
-  [[2, 2, 2],
-    [0, 2, 0]]
+  [[2, 2, 2], [0, 0, 2]],
+  [[2, 2, 2], [2, 0, 0]],
+  [[2, 2], [2, 2]],
+  [[2, 2, 2], [0, 2, 0]]
 ];
 
 const padding = 3;
@@ -46,26 +42,24 @@ const createNewBlock = (grid, state) => {
       grid[row][column + padding] = block[row][column];
     }
   }
-
 };
 
-const copyGrid = (grid) => grid.map((arr) => {
-  return arr.slice();
-});
+const copyGrid = grid =>
+  grid.map(arr => {
+    return arr.slice();
+  });
 
 function isEndTick(row, state, newGrid, column) {
-  return row === state.grid.length - 1|| newGrid[row + 1][column] === 1;
+  return row === state.grid.length - 1 || newGrid[row + 1][column] === 1;
 }
 
-
-
-const tick = (state) => {
+const tick = state => {
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
     createNewBlock(newGrid, state);
     state.newBlock = false;
     state.grid = newGrid;
-    return {...state};
+    return { ...state };
   }
   for (let row = newGrid.length - 1; row >= 0; row--) {
     for (let column = 0; column < newGrid[row].length; column++) {
@@ -78,9 +72,9 @@ const tick = (state) => {
             const row = newGrid[r];
             let filled = true;
             for (let c = 0; c < row.length; c++) {
-              if(row[c]) row[c] = 1;
-              if(!row[c]) filled = false;
-              if(filled && c === row.length - 1) {
+              if (row[c]) row[c] = 1;
+              if (!row[c]) filled = false;
+              if (filled && c === row.length - 1) {
                 newGrid.splice(r, 1);
                 newGrid.unshift(Array(10).fill(0));
               }
@@ -95,14 +89,14 @@ const tick = (state) => {
     }
   }
   state.grid = newGrid;
-  return {...state};
+  return { ...state };
 };
 
-const cellIsCurrentBlock = (cell) => {
+const cellIsCurrentBlock = cell => {
   return cell === 2;
 };
 
-const moveLeft = (state) => {
+const moveLeft = state => {
   const newGrid = copyGrid(state.grid);
   let needChange = true;
   for (let r = newGrid.length - 1; r >= 0; r--) {
@@ -119,11 +113,11 @@ const moveLeft = (state) => {
     }
   }
 
-  if(needChange) state.grid = newGrid;
-  return {...state};
+  if (needChange) state.grid = newGrid;
+  return { ...state };
 };
 
-const moveRight = (state) => {
+const moveRight = state => {
   const newGrid = copyGrid(state.grid);
   let needChange = true;
 
@@ -141,8 +135,8 @@ const moveRight = (state) => {
     }
   }
 
-  if(needChange) state.grid = newGrid;
-  return {...state};
+  if (needChange) state.grid = newGrid;
+  return { ...state };
 };
 
 // TODO Refactoring
