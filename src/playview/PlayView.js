@@ -2,6 +2,7 @@ import React from 'react';
 import './PlayView.scss';
 import {connect} from "react-redux";
 import Row from "./Row";
+import GameOver from "./GameOver";
 
 
 
@@ -37,12 +38,11 @@ function PlayView(store) {
 
   return (
     <div>
-      <Row grid={grid} />
+      {store.gameOver ? <GameOver /> : <Row grid={grid} />}
     </div>
   )
 }
-const mapStateToProps = state => ({ grid: state.grid });
-
+const mapStateToProps = state => ({ grid: state.grid, gameOver: state.gameOver });
 
 
 export default connect(mapStateToProps)(PlayView);

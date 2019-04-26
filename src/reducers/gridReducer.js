@@ -1,5 +1,6 @@
 const initialState = {
   newBlock: true,
+  gameOver: false,
   // When in production
   // Array(16).fill(Array(10).fill(0))
   grid: [
