@@ -1,3 +1,14 @@
+import {createAction, handleActions} from 'redux-actions';
+
+const TICK = "jelly-tetris/tick";
+const MOVE_LEFT = "jelly-tetris/moveLeft";
+const MOVE_RIGHT = "jelly-tetris/moveRight";
+
+export const tick = createAction(TICK);
+export const moveLeft = createAction(MOVE_LEFT);
+export const moveRight = createAction(MOVE_RIGHT);
+
+
 const initialState = {
   newBlock: true,
   gameOver: false,
@@ -53,13 +64,20 @@ function isEndTick(row, state, newGrid, column) {
   return row === state.grid.length - 1 || newGrid[row + 1][column] === 1;
 }
 
-const tick = state => {
+export default handleActions({
+  [TICK]: state => doTick(state),
+  [MOVE_LEFT]: state => doMoveLeft(state),
+  [MOVE_RIGHT]: state => doMoveRight(state)
+}, initialState);
+
+
+const doTick = state => {
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
     createNewBlock(newGrid, state);
     state.newBlock = false;
     state.grid = newGrid;
-    return { ...state };
+    return {...state};
   }
   for (let row = newGrid.length - 1; row >= 0; row--) {
     for (let column = 0; column < newGrid[row].length; column++) {
@@ -81,7 +99,7 @@ const tick = state => {
             }
           }
           state.grid = newGrid;
-          return tick(state);
+          return doTick(state);
         }
         newGrid[row + 1][column] = 2;
         newGrid[row][column] = 0;
@@ -89,14 +107,14 @@ const tick = state => {
     }
   }
   state.grid = newGrid;
-  return { ...state };
+  return {...state};
 };
 
 const cellIsCurrentBlock = cell => {
   return cell === 2;
 };
 
-const moveLeft = state => {
+const doMoveLeft = state => {
   const newGrid = copyGrid(state.grid);
   let needChange = true;
   for (let r = newGrid.length - 1; r >= 0; r--) {
@@ -114,10 +132,10 @@ const moveLeft = state => {
   }
 
   if (needChange) state.grid = newGrid;
-  return { ...state };
+  return {...state};
 };
 
-const moveRight = state => {
+const doMoveRight = state => {
   const newGrid = copyGrid(state.grid);
   let needChange = true;
 
@@ -136,20 +154,5 @@ const moveRight = state => {
   }
 
   if (needChange) state.grid = newGrid;
-  return { ...state };
+  return {...state};
 };
-
-// TODO Refactoring
-export default function reducer(state = initialState, action) {
-  switch (action.type) {
-    // do reducer stuff
-    case "TICK":
-      return tick(state);
-    case "MOVE_LEFT":
-      return moveLeft(state);
-    case "MOVE_RIGHT":
-      return moveRight(state);
-    default:
-      return state;
-  }
-}
