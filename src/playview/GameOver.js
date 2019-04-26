@@ -1,3 +1,4 @@
 import React from 'react';
+import './GameOver.scss';
 
-export default () => <div>Game Over</div>
+export default () => <div id="game-over">Game Over</div>

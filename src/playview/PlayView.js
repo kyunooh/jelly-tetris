@@ -7,7 +7,7 @@ import GameOver from "./GameOver";
 
 
 function PlayView(store) {
-  const grid = store.grid.grid;
+  const grid = store.grid;
 
   const tick = setTimeout(() => {
     store.dispatch({
@@ -42,7 +42,7 @@ function PlayView(store) {
     </div>
   )
 }
-const mapStateToProps = state => ({ grid: state.grid, gameOver: state.gameOver });
+const mapStateToProps = state => ({...state.grid});
 
 
 export default connect(mapStateToProps)(PlayView);

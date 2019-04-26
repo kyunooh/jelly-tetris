@@ -37,14 +37,16 @@ const tetriminos = [
 
 const padding = 3;
 
-const createNewBlock = (grid) => {
+const createNewBlock = (grid, state) => {
   const r = Math.floor(Math.random() * 5);
   const block = tetriminos[r];
   for (let row = 0; row < block.length; row++) {
     for (let column = 0; column < block[row].length; column++) {
+      if (grid[row][column + padding]) state.gameOver = true;
       grid[row][column + padding] = block[row][column];
     }
   }
+
 };
 
 const copyGrid = (grid) => grid.map((arr) => {
@@ -60,7 +62,7 @@ function isEndTick(row, state, newGrid, column) {
 const tick = (state) => {
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
-    createNewBlock(newGrid);
+    createNewBlock(newGrid, state);
     state.newBlock = false;
     state.grid = newGrid;
     return {...state};
