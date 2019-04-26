@@ -13,11 +13,16 @@ const PlayViewContainer = props => {
   const handleMoveRight = () => {
     props.moveRight();
   };
+  const handleRotate = () => {
+    props.rotate();
+  };
+
   return (
     <PlayView
       tick={handleTick}
       moveLeft={handleMoveLeft}
       moveRight={handleMoveRight}
+      rotate={handleRotate}
       grid={props.grid}
       gameOver={props.gameOver}
     />
@@ -29,6 +34,7 @@ export default connect(
   dispatch => ({
     tick: () => dispatch(tetrisReducer.tick()),
     moveLeft: () => dispatch(tetrisReducer.moveLeft()),
-    moveRight: () => dispatch(tetrisReducer.moveRight())
+    moveRight: () => dispatch(tetrisReducer.moveRight()),
+    rotate: () => dispatch(tetrisReducer.rotate())
   })
 )(PlayViewContainer);

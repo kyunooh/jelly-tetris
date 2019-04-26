@@ -22,6 +22,10 @@ function PlayView(props) {
     if (e.key === "ArrowDown") {
       props.tick();
     }
+
+    if(e.key === "ArrowUp") {
+      props.rotate();
+    }
   };
 
   return <div>{props.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
