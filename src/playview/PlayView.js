@@ -1,6 +1,5 @@
 import React from "react";
 import "./PlayView.scss";
-import { connect } from "react-redux";
 import Row from "./Row";
 import GameOver from "./GameOver";
 
