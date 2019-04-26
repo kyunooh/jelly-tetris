@@ -4,38 +4,29 @@ import { connect } from "react-redux";
 import Row from "./Row";
 import GameOver from "./GameOver";
 
-function PlayView(store) {
-  const grid = store.grid;
-
+function PlayView(props) {
+  const grid = props.grid;
   const tick = setTimeout(() => {
-    store.dispatch({
-      type: "TICK"
-    });
+    props.tick();
   }, 1000);
 
   document.onkeydown = e => {
     clearTimeout(tick);
     if (e.key === "ArrowLeft") {
-      store.dispatch({
-        type: "MOVE_LEFT"
-      });
+      props.moveLeft();
     }
 
     if (e.key === "ArrowRight") {
-      store.dispatch({
-        type: "MOVE_RIGHT"
-      });
+      props.moveRight();
     }
 
     if (e.key === "ArrowDown") {
-      store.dispatch({
-        type: "TICK"
-      });
+      props.tick();
     }
   };
 
-  return <div>{store.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
+  return <div>{props.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
 }
-const mapStateToProps = state => ({ ...state.grid });
 
-export default connect(mapStateToProps)(PlayView);
+
+export default PlayView;
