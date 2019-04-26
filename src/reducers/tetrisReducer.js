@@ -47,7 +47,6 @@ function canNotRotate(newGrid, r, cr, c, cc) {
 }
 
 const initCurrentBlock = (state, rotatedTetrimino) => {
-  console.log(state);
   const newGrid = copyGrid(state.grid);
   for (let r = 0; r < newGrid.length; r++) {
     for (let c = 0; c < newGrid[r].length; c++) {
