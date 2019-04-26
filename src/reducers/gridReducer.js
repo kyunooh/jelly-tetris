@@ -86,7 +86,6 @@ const tick = (state) => {
           state.grid = newGrid;
           return tick(state);
         }
-p
         newGrid[row + 1][column] = 2;
         newGrid[row][column] = 0;
       }
