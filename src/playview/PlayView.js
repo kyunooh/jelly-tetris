@@ -13,7 +13,7 @@ function PlayView(store) {
     store.dispatch({
       type: "TICK"
     });
-  }, 1000);
+  }, 100);
 
   function column(row) {
     let view = [];
@@ -38,7 +38,7 @@ function PlayView(store) {
 
   return (
     <div>
-      state.gameOver ? <GameOver /> : {renderGrid()}
+      {store.gameOver ? <GameOver /> : renderGrid()}
     </div>
   )
 }
