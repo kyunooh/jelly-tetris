@@ -5,7 +5,7 @@ import GameOver from "./GameOver";
 
 function PlayView(props) {
   const grid = props.grid;
-  const tick = setTimeout(() => {
+  let tick = setTimeout(() => {
     props.tick();
   }, 1000);
 
@@ -25,6 +25,10 @@ function PlayView(props) {
 
     if(e.key === "ArrowUp") {
       props.rotate();
+    }
+
+    if(e.key === " ") {
+      props.drop();
     }
   };
 

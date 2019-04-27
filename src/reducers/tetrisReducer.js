@@ -4,15 +4,18 @@ const TICK = "jelly-tetris/tick";
 const MOVE_LEFT = "jelly-tetris/moveLeft";
 const MOVE_RIGHT = "jelly-tetris/moveRight";
 const ROTATE = "jelly-tetris/rotate";
+const DROP = "jelly-tetris/drop";
 
 export const tick = createAction(TICK);
 export const moveLeft = createAction(MOVE_LEFT);
 export const moveRight = createAction(MOVE_RIGHT);
 export const rotate = createAction(ROTATE);
+export const drop = createAction(DROP);
 
 const initialState = {
   newBlock: true,
   gameOver: false,
+  dropping: false,
   currentBlock: [],
   currentBlockLocation: [0, 0],
   grid: Array(16).fill(Array(10).fill(0))
@@ -41,12 +44,16 @@ const setCurrentLocation = state => {
   }
 };
 
-
 function canNotRotate(newGrid, r, cr, c, cc) {
-  return newGrid[r + cr] === undefined || newGrid[r + cr][c + cc] || newGrid[r + cr][c + cc];
+  return (
+    r + cr >= newGrid.length ||
+    c + cc >= newGrid[0].length ||
+    newGrid[r + cr][c + cc]
+  );
 }
 
-const initCurrentBlock = (state, rotatedTetrimino) => {
+const initCurrentBlock = (state, rotatedTetrimino, step = 0) => {
+  if (step < -3) return;
   const newGrid = copyGrid(state.grid);
   for (let r = 0; r < newGrid.length; r++) {
     for (let c = 0; c < newGrid[r].length; c++) {
@@ -58,10 +65,11 @@ const initCurrentBlock = (state, rotatedTetrimino) => {
 
   // current coordinate
   const cr = state.currentBlockLocation[0];
-  const cc = state.currentBlockLocation[1];
-  for(let r = 0; r < rotatedTetrimino.length; r++) {
+  const cc = state.currentBlockLocation[1] + step;
+  for (let r = 0; r < rotatedTetrimino.length; r++) {
     for (let c = 0; c < rotatedTetrimino[r].length; c++) {
       if (canNotRotate(newGrid, r, cr, c, cc)) {
+        initCurrentBlock(state, rotatedTetrimino, step - 1);
         return;
       }
       newGrid[r + cr][c + cc] = rotatedTetrimino[r][c];
@@ -85,7 +93,7 @@ const doRotate = state => {
     rotatedTetrimino.push(row);
   }
   initCurrentBlock(state, rotatedTetrimino);
-  return {...state};
+  return { ...state };
 };
 
 const padding = 3;
@@ -116,16 +124,26 @@ export default handleActions(
     [TICK]: state => doTick(state),
     [MOVE_LEFT]: state => doMoveLeft(state),
     [MOVE_RIGHT]: state => doMoveRight(state),
-    [ROTATE]: state => doRotate(state)
+    [ROTATE]: state => doRotate(state),
+    [DROP]: state => doDrop(state)
   },
   initialState
 );
+
+const doDrop = state => {
+  state.dropping = true;
+  while(state.dropping) {
+    doTick(state);
+  }
+  return doTick(state);
+};
 
 const doTick = state => {
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
     createNewBlock(newGrid, state);
     state.newBlock = false;
+    state.dropping = false;
     state.grid = newGrid;
     setCurrentLocation(state);
     return { ...state };
@@ -154,7 +172,6 @@ const doTick = state => {
         }
         newGrid[row + 1][column] = 2;
         newGrid[row][column] = 0;
-        // TODO Rotate
       }
     }
   }
