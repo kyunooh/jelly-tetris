@@ -23,24 +23,24 @@ const initialState = {
 
 // I J L O T
 const tetriminos = {
-  0: [[2, 2, 2, 2]],
-  1: [[2, 2, 2], [0, 0, 2]],
-  2: [[2, 2, 2], [2, 0, 0]],
-  3: [[2, 2], [2, 2]],
-  4: [[2, 2, 2], [0, 2, 0]]
+  0: [[11, 11, 11, 11]],
+  1: [[12, 12, 12], [0, 0, 12]],
+  2: [[13, 13, 13], [13, 0, 0]],
+  3: [[14, 14], [14, 14]],
+  4: [[15, 15, 15], [0, 15, 0]]
 };
 
 const setCurrentLocation = state => {
-  let find = false;
+  let findLeftUpper = false;
   for (let r = 0; r < state.grid.length; r++) {
     for (let c = 0; c < state.grid[r].length; c++) {
-      if (state.grid[r][c] === 2) {
+      if (state.grid[r][c] > 10) {
         state.currentBlockLocation = [r, c];
-        find = true;
+        findLeftUpper = true;
         break;
       }
     }
-    if (find) break;
+    if (findLeftUpper) break;
   }
 };
 
@@ -57,7 +57,7 @@ const initCurrentBlock = (state, rotatedTetrimino, step = 0) => {
   const newGrid = copyGrid(state.grid);
   for (let r = 0; r < newGrid.length; r++) {
     for (let c = 0; c < newGrid[r].length; c++) {
-      if (newGrid[r][c] === 2) {
+      if (newGrid[r][c] > 10) {
         newGrid[r][c] = 0;
       }
     }
@@ -104,7 +104,8 @@ const createNewBlock = (grid, state) => {
   state.currentBlock = block;
   for (let row = 0; row < block.length; row++) {
     for (let column = 0; column < block[row].length; column++) {
-      if (grid[row][column + padding]) state.gameOver = true;
+      if (grid[row][column + padding] > 0 && grid[row][column + padding] < 10)
+        state.gameOver = true;
       grid[row][column + padding] = block[row][column];
     }
   }
@@ -116,7 +117,10 @@ const copyGrid = grid =>
   });
 
 function isEndTick(row, state, newGrid, column) {
-  return row === state.grid.length - 1 || newGrid[row + 1][column] === 1;
+  return (
+    row === state.grid.length - 1 ||
+    (newGrid[row + 1][column] < 10 && newGrid[row + 1][column] > 0)
+  );
 }
 
 export default handleActions(
@@ -132,10 +136,10 @@ export default handleActions(
 
 const doDrop = state => {
   state.dropping = true;
-  while(state.dropping) {
-    doTick(state);
+  while (state.dropping) {
+    state = doTick(state);
   }
-  return doTick(state);
+  return { ...state };
 };
 
 const doTick = state => {
@@ -150,7 +154,7 @@ const doTick = state => {
   }
   for (let row = newGrid.length - 1; row >= 0; row--) {
     for (let column = 0; column < newGrid[row].length; column++) {
-      if (newGrid[row][column] === 2) {
+      if (newGrid[row][column] > 10) {
         if (isEndTick(row, state, newGrid, column)) {
           newGrid = copyGrid(state.grid);
           state.newBlock = true;
@@ -159,7 +163,7 @@ const doTick = state => {
             const row = newGrid[r];
             let filled = true;
             for (let c = 0; c < row.length; c++) {
-              if (row[c]) row[c] = 1;
+              if (row[c] && row[c] > 10) row[c] -= 10;
               if (!row[c]) filled = false;
               if (filled && c === row.length - 1) {
                 newGrid.splice(r, 1);
@@ -170,7 +174,7 @@ const doTick = state => {
           state.grid = newGrid;
           return doTick(state);
         }
-        newGrid[row + 1][column] = 2;
+        newGrid[row + 1][column] = newGrid[row][column];
         newGrid[row][column] = 0;
       }
     }
@@ -182,7 +186,7 @@ const doTick = state => {
 };
 
 const cellIsCurrentBlock = cell => {
-  return cell === 2;
+  return cell > 10;
 };
 
 const doMoveLeft = state => {
@@ -193,7 +197,7 @@ const doMoveLeft = state => {
     for (let c = 0; c < row.length; c++) {
       if (cellIsCurrentBlock(row[c])) {
         if (row[c - 1] === 0) {
-          newGrid[r][c - 1] = 2;
+          newGrid[r][c - 1] = newGrid[r][c];
           newGrid[r][c] = 0;
         } else {
           needChange = false;
@@ -216,8 +220,9 @@ const doMoveRight = state => {
     for (let c = row.length - 1; c >= 0; c--) {
       if (cellIsCurrentBlock(row[c])) {
         if (row[c + 1] === 0) {
+          const originValue = newGrid[r][c];
           newGrid[r][c] = 0;
-          newGrid[r][c + 1] = 2;
+          newGrid[r][c + 1] = originValue;
         } else {
           needChange = false;
         }

@@ -10,7 +10,7 @@ function Row(props) {
       const keyName = `${row}-${column}`;
       if (grid[row][column]) {
         cells.push(
-          <span className="cell fill" key={keyName}>
+          <span className={`cell fill-${grid[row][column]}`} key={keyName}>
             &nbsp;
           </span>
         );

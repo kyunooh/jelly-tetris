@@ -4,10 +4,43 @@
   display: inline-block;
   border: #eeeeee solid 1px;
   &.empty {
-    background: lightgrey;
+    background: rgba(90, 90, 90, 0.5);
   }
 
   &.fill {
-    background: red;
+    &-11 {
+      background: orangered;
+    }
+    &-12 {
+      background: skyblue;
+    }
+    &-13 {
+      background: yellowgreen;
+    }
+    &-14 {
+      background: orange;
+    }
+    &-15 {
+      background: purple;
+    }
+
+
+    &-1 {
+      background: red;
+    }
+    &-2 {
+      background: deepskyblue;
+    }
+    &-3 {
+      background: green;
+    }
+    &-4 {
+      background: #ff6c00;
+    }
+    &-5 {
+      background: rebeccapurple;
+    }
   }
+
+
 }
