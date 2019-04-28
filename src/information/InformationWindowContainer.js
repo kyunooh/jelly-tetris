@@ -7,6 +7,7 @@ const InformationWindowContainer = props => {
 
   const handleReset = () => {
       props.reset();
+      document.getElementById("prevent-reset").focus();
   };
 
   return (
