@@ -1,24 +1,20 @@
-import { createAction, handleActions } from "redux-actions";
+import {createAction, handleActions} from "redux-actions";
 
-const TICK = "jelly-tetris/tick";
-const MOVE_LEFT = "jelly-tetris/moveLeft";
-const MOVE_RIGHT = "jelly-tetris/moveRight";
-const ROTATE = "jelly-tetris/rotate";
-const DROP = "jelly-tetris/drop";
+const initialState = () =>
+  ({
+    newBlock: true,
+    gameOver: false,
+    dropping: false,
+    removedLines: 0,
+    levels: 1,
+    currentBlock: [],
+    currentBlockLocation: [0, 0],
+    grid: Array(16).fill(Array(10).fill(0)),
+  });
 
-export const tick = createAction(TICK);
-export const moveLeft = createAction(MOVE_LEFT);
-export const moveRight = createAction(MOVE_RIGHT);
-export const rotate = createAction(ROTATE);
-export const drop = createAction(DROP);
-
-const initialState = {
-  newBlock: true,
-  gameOver: false,
-  dropping: false,
-  currentBlock: [],
-  currentBlockLocation: [0, 0],
-  grid: Array(16).fill(Array(10).fill(0))
+const doReset = (state) => {
+  clearInterval(state.reservedTick);
+  return initialState();
 };
 
 // I J L O T
@@ -52,8 +48,15 @@ function canNotRotate(newGrid, r, cr, c, cc) {
   );
 }
 
-const initCurrentBlock = (state, rotatedTetrimino, step = 0) => {
-  if (step < -3) return;
+const initCurrentBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
+  if (rStep > 3) {
+    return;
+  }
+  if (cStep < -3) {
+    initCurrentBlock(state, rotatedTetrimino, 0, rStep + 1);
+    return;
+  }
+
   const newGrid = copyGrid(state.grid);
   for (let r = 0; r < newGrid.length; r++) {
     for (let c = 0; c < newGrid[r].length; c++) {
@@ -62,14 +65,13 @@ const initCurrentBlock = (state, rotatedTetrimino, step = 0) => {
       }
     }
   }
-
   // current coordinate
-  const cr = state.currentBlockLocation[0];
-  const cc = state.currentBlockLocation[1] + step;
+  const cr = state.currentBlockLocation[0] + rStep;
+  const cc = state.currentBlockLocation[1] + cStep;
   for (let r = 0; r < rotatedTetrimino.length; r++) {
     for (let c = 0; c < rotatedTetrimino[r].length; c++) {
       if (canNotRotate(newGrid, r, cr, c, cc)) {
-        initCurrentBlock(state, rotatedTetrimino, step - 1);
+        initCurrentBlock(state, rotatedTetrimino, cStep - 1, rStep);
         return;
       }
       newGrid[r + cr][c + cc] = rotatedTetrimino[r][c];
@@ -123,17 +125,6 @@ function isEndTick(row, state, newGrid, column) {
   );
 }
 
-export default handleActions(
-  {
-    [TICK]: state => doTick(state),
-    [MOVE_LEFT]: state => doMoveLeft(state),
-    [MOVE_RIGHT]: state => doMoveRight(state),
-    [ROTATE]: state => doRotate(state),
-    [DROP]: state => doDrop(state)
-  },
-  initialState
-);
-
 const doDrop = state => {
   state.dropping = true;
   while (state.dropping) {
@@ -166,8 +157,7 @@ const doTick = state => {
               if (row[c] && row[c] > 10) row[c] -= 10;
               if (!row[c]) filled = false;
               if (filled && c === row.length - 1) {
-                newGrid.splice(r, 1);
-                newGrid.unshift(Array(10).fill(0));
+                removeLines(newGrid, r, state);
               }
             }
           }
@@ -183,6 +173,19 @@ const doTick = state => {
   state.grid = newGrid;
   setCurrentLocation(state);
   return { ...state };
+};
+
+const removeLines = (grid, row, state) => {
+  grid.splice(row, 1);
+  grid.unshift(Array(10).fill(0));
+  state.removedLines += 1;
+  if (state.removedLines % 8 === 0) {
+    clearInterval(state.reservedTick);
+    state.levels += 1;
+    state.reservedTick = setInterval(() => {
+      tick();
+    }, 1000 * Math.pow(0.85, state.levels));
+  }
 };
 
 const cellIsCurrentBlock = cell => {
@@ -234,3 +237,29 @@ const doMoveRight = state => {
   setCurrentLocation(state);
   return { ...state };
 };
+
+const TICK = "jelly-tetris/tick";
+const MOVE_LEFT = "jelly-tetris/moveLeft";
+const MOVE_RIGHT = "jelly-tetris/moveRight";
+const ROTATE = "jelly-tetris/rotate";
+const DROP = "jelly-tetris/drop";
+const RESET = "jelly-tetris/reset";
+
+export const tick = createAction(TICK);
+export const moveLeft = createAction(MOVE_LEFT);
+export const moveRight = createAction(MOVE_RIGHT);
+export const rotate = createAction(ROTATE);
+export const drop = createAction(DROP);
+export const reset = createAction(RESET);
+
+export default handleActions(
+  {
+    [TICK]: state => doTick(state),
+    [MOVE_LEFT]: state => doMoveLeft(state),
+    [MOVE_RIGHT]: state => doMoveRight(state),
+    [ROTATE]: state => doRotate(state),
+    [DROP]: state => doDrop(state),
+    [RESET]: state => doReset(state)
+  },
+  initialState(1)
+);

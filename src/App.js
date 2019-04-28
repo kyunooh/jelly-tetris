@@ -3,6 +3,8 @@ import './App.css';
 import initializeStore from "./initializeStore";
 import {Provider} from "react-redux";
 import PlayViewContainer from "./playview/PlayViewContainer";
+import InformationWindowContainer from "./information/InformationWindowContainer";
+
 
 const store = initializeStore();
 
@@ -11,6 +13,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <PlayViewContainer />
+        <InformationWindowContainer />
       </div>
     </Provider>
   );

@@ -20,6 +20,10 @@ const PlayViewContainer = props => {
     props.drop();
   };
 
+  const tickTimer = (levels) => {
+    props.tickTimer(levels);
+  };
+
   return (
     <PlayView
       tick={handleTick}
@@ -27,19 +31,23 @@ const PlayViewContainer = props => {
       moveRight={handleMoveRight}
       rotate={handleRotate}
       drop={handleDrop}
+      tickTimer={tickTimer}
       grid={props.grid}
+      levels={props.levels}
       gameOver={props.gameOver}
+      reservedTick={props.reservedTick}
     />
   );
 };
 
 export default connect(
-  state => ({ ...state.grid }),
+  state => ({ ...state.tetrisReducer }),
   dispatch => ({
     tick: () => dispatch(tetrisReducer.tick()),
     moveLeft: () => dispatch(tetrisReducer.moveLeft()),
     moveRight: () => dispatch(tetrisReducer.moveRight()),
     rotate: () => dispatch(tetrisReducer.rotate()),
-    drop: () => dispatch(tetrisReducer.drop())
+    drop: () => dispatch(tetrisReducer.drop()),
+    tickTimer: (levels) => dispatch({ type: "WATCH_TICK", levels })
   })
 )(PlayViewContainer);

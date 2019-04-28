@@ -5,12 +5,9 @@ import GameOver from "./GameOver";
 
 function PlayView(props) {
   const grid = props.grid;
-  let tick = setTimeout(() => {
-    props.tick();
-  }, 1000);
+  props.tickTimer(props.levels);
 
   document.onkeydown = e => {
-    clearTimeout(tick);
     if (e.key === "ArrowLeft") {
       props.moveLeft();
     }
