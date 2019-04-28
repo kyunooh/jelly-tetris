@@ -3,8 +3,8 @@ import { createAction, handleActions } from "redux-actions";
 const JELLY_TETRIS = "jelly-tetris";
 const initialState = () => {
   const existTetris = localStorage.getItem(JELLY_TETRIS);
-  if(existTetris) {
-    return JSON.parse(existTetris)
+  if (existTetris) {
+    return JSON.parse(existTetris);
   }
 
   return {
@@ -56,12 +56,22 @@ function canNotRotate(newGrid, r, cr, c, cc) {
   );
 }
 
-const initCurrentBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
-  if (rStep > 3) {
+const rotateBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
+  if(cStep < -3) {
+      if (rStep > 2) {
+      return;
+    }
+    rotateBlock(state, rotatedTetrimino, -1, rStep + 1);
     return;
   }
-  if (cStep < -3) {
-    initCurrentBlock(state, rotatedTetrimino, 0, rStep + 1);
+  if (rStep > 2) {
+    if (cStep > 0) {
+      rotateBlock(state, rotatedTetrimino, -1);
+    }
+    return;
+  }
+  if (cStep > 3) {
+    rotateBlock(state, rotatedTetrimino, 0, rStep + 1);
     return;
   }
 
@@ -79,7 +89,8 @@ const initCurrentBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
   for (let r = 0; r < rotatedTetrimino.length; r++) {
     for (let c = 0; c < rotatedTetrimino[r].length; c++) {
       if (canNotRotate(newGrid, r, cr, c, cc)) {
-        initCurrentBlock(state, rotatedTetrimino, cStep - 1, rStep);
+        if (cStep >= 0) rotateBlock(state, rotatedTetrimino, cStep + 1, rStep);
+        else rotateBlock(state, rotatedTetrimino, cStep - 1, rStep);
         return;
       }
       newGrid[r + cr][c + cc] = rotatedTetrimino[r][c];
@@ -102,7 +113,7 @@ const doRotate = state => {
     }
     rotatedTetrimino.push(row);
   }
-  initCurrentBlock(state, rotatedTetrimino);
+  rotateBlock(state, rotatedTetrimino);
   return { ...state };
 };
 
