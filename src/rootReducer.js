@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import grid from "./reducers/tetrisReducer";
+import tetrisReducer from "./reducers/tetrisReducer";
 
 const createReducer = asyncReducers =>
   combineReducers({
-    grid,
+    tetrisReducer,
     ...asyncReducers
   });
 

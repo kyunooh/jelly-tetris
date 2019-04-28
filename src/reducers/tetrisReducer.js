@@ -1,7 +1,13 @@
-import {createAction, handleActions} from "redux-actions";
+import { createAction, handleActions } from "redux-actions";
 
-const initialState = () =>
-  ({
+const JELLY_TETRIS = "jelly-tetris";
+const initialState = () => {
+  const existTetris = localStorage.getItem(JELLY_TETRIS);
+  if(existTetris) {
+    return JSON.parse(existTetris)
+  }
+
+  return {
     newBlock: true,
     gameOver: false,
     dropping: false,
@@ -9,11 +15,13 @@ const initialState = () =>
     levels: 1,
     currentBlock: [],
     currentBlockLocation: [0, 0],
-    grid: Array(16).fill(Array(10).fill(0)),
-  });
+    grid: Array(16).fill(Array(10).fill(0))
+  };
+};
 
-const doReset = (state) => {
+const doReset = state => {
   clearInterval(state.reservedTick);
+  localStorage.setItem(JELLY_TETRIS, "");
   return initialState();
 };
 
@@ -134,6 +142,7 @@ const doDrop = state => {
 };
 
 const doTick = state => {
+  localStorage.setItem(JELLY_TETRIS, JSON.stringify(state));
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
     createNewBlock(newGrid, state);
@@ -261,5 +270,5 @@ export default handleActions(
     [DROP]: state => doDrop(state),
     [RESET]: state => doReset(state)
   },
-  initialState(1)
+  initialState()
 );
