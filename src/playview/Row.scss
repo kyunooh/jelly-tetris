@@ -1,0 +1,58 @@
+.cell {
+  min-width: 30px;
+  min-height: 30px;
+  display: inline-block;
+  border: #eeeeee solid 1px;
+  &.empty {
+    background: rgba(90, 90, 90, 0.5);
+  }
+
+  &.fill {
+    &-11 {
+      background: cyan;
+    }
+    &-12 {
+      background: blue;
+    }
+    &-13 {
+      background: orange;
+    }
+    &-14 {
+      background: lightyellow;
+    }
+    &-15 {
+      background: mediumpurple;
+    }
+    &-16 {
+      background: greenyellow;
+    }
+    &-17 {
+      background: red;
+    }
+
+    &-1 {
+      background: darkcyan;
+    }
+    &-2 {
+      background: darkblue;
+    }
+    &-3 {
+      background: darkorange;
+    }
+    &-4 {
+      background: yellow;
+    }
+    &-5 {
+      background: rebeccapurple;
+    }
+    &-6 {
+      background: yellowgreen;
+    }
+    &-7 {
+      background: darkred;
+    }
+
+  }
+
+
+}

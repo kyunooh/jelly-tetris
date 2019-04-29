@@ -1,4 +1,5 @@
 import React from "react";
+import './Row.scss'
 
 function Row(props) {
   const { grid } = props;

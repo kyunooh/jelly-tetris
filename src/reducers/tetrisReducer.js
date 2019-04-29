@@ -14,6 +14,7 @@ const initialState = () => {
     removedLines: 0,
     levels: 1,
     currentBlock: [],
+    nextBlock:[],
     currentBlockLocation: [0, 0],
     grid: Array(16).fill(Array(10).fill(0))
   };
@@ -25,14 +26,7 @@ const doReset = state => {
   return initialState();
 };
 
-// I J L O T
-const tetriminos = {
-  0: [[11, 11, 11, 11]],
-  1: [[12, 12, 12], [0, 0, 12]],
-  2: [[13, 13, 13], [13, 0, 0]],
-  3: [[14, 14], [14, 14]],
-  4: [[15, 15, 15], [0, 15, 0]]
-};
+
 
 const setCurrentLocation = state => {
   let findLeftUpper = false;
@@ -119,15 +113,33 @@ const doRotate = state => {
 
 const padding = 3;
 
+// I J L O T Z S
+const tetriminos = {
+  0: [[11, 11, 11, 11]],
+  1: [[12, 12, 12], [0, 0, 12]],
+  2: [[13, 13, 13], [13, 0, 0]],
+  3: [[14, 14], [14, 14]],
+  4: [[15, 15, 15], [0, 15, 0]],
+  5: [[16, 16, 0], [0, 16, 16]],
+  6: [[0, 17, 17], [17, 17, 0]]
+};
+
 const createNewBlock = (grid, state) => {
-  const r = Math.floor(Math.random() * 5);
+  if(state.currentBlock.length === 0) {
+    const r = Math.floor(Math.random() * 7);
+    state.currentBlock = [...tetriminos[r]];
+  } else {
+    state.currentBlock = state.nextBlock;
+  }
+  const r = Math.floor(Math.random() * 7);
   const block = tetriminos[r];
-  state.currentBlock = block;
-  for (let row = 0; row < block.length; row++) {
-    for (let column = 0; column < block[row].length; column++) {
+  state.nextBlock = [...block];
+
+  for (let row = 0; row < state.currentBlock.length; row++) {
+    for (let column = 0; column < state.currentBlock[row].length; column++) {
       if (grid[row][column + padding] > 0 && grid[row][column + padding] < 10)
         state.gameOver = true;
-      grid[row][column + padding] = block[row][column];
+      grid[row][column + padding] = state.currentBlock[row][column];
     }
   }
 };
