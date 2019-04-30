@@ -13,6 +13,7 @@ const InformationWindowContainer = props => {
   return (
     <InformationWindow
       nextBlock={props.nextBlock}
+      holdBlock={props.holdBlock}
       removedLines={props.removedLines}
       levels={props.levels}
       reset={handleReset}

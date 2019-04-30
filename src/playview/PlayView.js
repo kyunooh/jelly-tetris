@@ -27,6 +27,10 @@ function PlayView(props) {
     if(e.key === " ") {
       props.drop();
     }
+
+    if(e.key === "Shift") {
+      props.hold();
+    }
   };
 
   return <div>{props.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;

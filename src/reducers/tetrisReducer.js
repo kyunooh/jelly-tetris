@@ -6,15 +6,20 @@ const initialState = () => {
   if (existTetris) {
     return JSON.parse(existTetris);
   }
-
   return {
     newBlock: true,
     gameOver: false,
     dropping: false,
+    hold: false,
+    canHold: true,
     removedLines: 0,
     levels: 1,
     currentBlock: [],
-    nextBlock:[],
+    currentBlockNumber: -1,
+    nextBlock: [],
+    nextBlockNumber: -1,
+    holdBlock: [],
+    temporaryHoldBlockNumber: 0,
     currentBlockLocation: [0, 0],
     grid: Array(16).fill(Array(10).fill(0))
   };
@@ -25,8 +30,6 @@ const doReset = state => {
   localStorage.setItem(JELLY_TETRIS, "");
   return initialState();
 };
-
-
 
 const setCurrentLocation = state => {
   let findLeftUpper = false;
@@ -51,8 +54,8 @@ function canNotRotate(newGrid, r, cr, c, cc) {
 }
 
 const rotateBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
-  if(cStep < -3) {
-      if (rStep > 2) {
+  if (cStep < -3) {
+    if (rStep > 2) {
       return;
     }
     rotateBlock(state, rotatedTetrimino, -1, rStep + 1);
@@ -125,15 +128,24 @@ const tetriminos = {
 };
 
 const createNewBlock = (grid, state) => {
-  if(state.currentBlock.length === 0) {
-    const r = Math.floor(Math.random() * 7);
-    state.currentBlock = [...tetriminos[r]];
+  if (state.currentBlock.length === 0) {
+    state.currentBlockNumber = Math.floor(Math.random() * 7);
+    state.currentBlock = [...tetriminos[state.currentBlockNumber]];
+    state.nextBlockNumber = Math.floor(Math.random() * 7);
+    state.nextBlock = [...tetriminos[state.nextBlockNumber]];
+  } else if (state.hold && state.holdBlock.length > 0) {
+    state.temporaryHoldBlockNumber = state.currentBlockNumber;
+    state.currentBlock = [...state.holdBlock];
+  } else if (state.hold) {
+    state.temporaryHoldBlockNumber = state.currentBlockNumber;
   } else {
-    state.currentBlock = state.nextBlock;
+    state.currentBlock = [...state.nextBlock];
+    state.currentBlockNumber = state.nextBlockNumber;
+    state.nextBlockNumber = Math.floor(Math.random() * 7);
+    const block = tetriminos[state.nextBlockNumber];
+    state.nextBlock = [...block];
+
   }
-  const r = Math.floor(Math.random() * 7);
-  const block = tetriminos[r];
-  state.nextBlock = [...block];
 
   for (let row = 0; row < state.currentBlock.length; row++) {
     for (let column = 0; column < state.currentBlock[row].length; column++) {
@@ -171,6 +183,8 @@ const doTick = state => {
     createNewBlock(newGrid, state);
     state.newBlock = false;
     state.dropping = false;
+    if(!state.hold) state.canHold = true;
+    state.hold = false;
     state.grid = newGrid;
     setCurrentLocation(state);
     return { ...state };
@@ -270,12 +284,30 @@ const doMoveRight = state => {
   return { ...state };
 };
 
+const doHold = (state) => {
+  if(!state.canHold) return {...state};
+  state.canHold = false;
+  state.hold = true;
+  for(let r = 0; r < state.grid.length; r++) {
+    for (let c = 0; c < state.grid[r].length; c++) {
+      if(state.grid[r][c] > 10) state.grid[r][c] = 0;
+    }
+  }
+
+  state.newBlock = true;
+  state = doTick(state);
+  state.holdBlock = tetriminos[state.temporaryHoldBlockNumber];
+  return state;
+};
+
+
 const TICK = "jelly-tetris/tick";
 const MOVE_LEFT = "jelly-tetris/moveLeft";
 const MOVE_RIGHT = "jelly-tetris/moveRight";
 const ROTATE = "jelly-tetris/rotate";
 const DROP = "jelly-tetris/drop";
 const RESET = "jelly-tetris/reset";
+const HOLD = "jelly-tetris/hold";
 
 export const tick = createAction(TICK);
 export const moveLeft = createAction(MOVE_LEFT);
@@ -283,6 +315,7 @@ export const moveRight = createAction(MOVE_RIGHT);
 export const rotate = createAction(ROTATE);
 export const drop = createAction(DROP);
 export const reset = createAction(RESET);
+export const hold = createAction(HOLD);
 
 export default handleActions(
   {
@@ -291,7 +324,8 @@ export default handleActions(
     [MOVE_RIGHT]: state => doMoveRight(state),
     [ROTATE]: state => doRotate(state),
     [DROP]: state => doDrop(state),
-    [RESET]: state => doReset(state)
+    [RESET]: state => doReset(state),
+    [HOLD]: state => doHold(state)
   },
   initialState()
 );

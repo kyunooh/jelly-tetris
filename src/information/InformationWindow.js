@@ -3,21 +3,30 @@ import "./InformationWindow.scss";
 import Row from "../playview/Row";
 
 const InformationWindow = props => {
-  const nextBlockGrid = (block) => {
+  const blockGird = block => {
     const padding = 1;
-    const nextBlockGrid = [[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0]];
+    const blockGrid = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0]
+    ];
     for (let r = 0; r < block.length; r++) {
       for (let c = 0; c < block[r].length; c++) {
-          nextBlockGrid[r+padding][c+padding] = block[r][c];
+        blockGrid[r + padding][c + padding] = block[r][c];
       }
     }
-    return nextBlockGrid;
+    return blockGrid;
   };
 
   return (
     <div id="information-window">
-        <Row grid={nextBlockGrid(props.nextBlock)}/>
-        <div id="removed-lines">Lines: {props.removedLines}</div>
+      <Row grid={blockGird(props.nextBlock)} />
+      <div>NEXT</div>
+      <Row grid={blockGird(props.holdBlock)} />
+      <div>HOLD</div>
+
+      <div id="removed-lines">Lines: {props.removedLines}</div>
       <div id="levels">Level: {props.levels}</div>
       <button id="prevent-reset" style={{ width: "0px", height: "0px" }} />
       <button onClick={props.reset}>Reset</button>
