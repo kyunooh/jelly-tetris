@@ -135,6 +135,12 @@ const createNewBlock = (grid, state) => {
     state.currentBlock = [...state.holdBlock];
   } else if (state.hold) {
     state.temporaryHoldBlockNumber = state.currentBlockNumber;
+    state.currentBlock = [...state.nextBlock];
+    state.currentBlockNumber = state.nextBlockNumber;
+    state.nextBlockNumber = Math.floor(Math.random() * 7);
+    const block = tetriminos[state.nextBlockNumber];
+    state.nextBlock = [...block];
+
   } else {
     state.currentBlock = [...state.nextBlock];
     state.currentBlockNumber = state.nextBlockNumber;
