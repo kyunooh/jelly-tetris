@@ -33,7 +33,7 @@ function PlayView(props) {
     }
   };
 
-  return <div>{props.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
+  return <div className="play-view">{props.gameOver ? <GameOver /> : <Row grid={grid} />}</div>;
 }
 
 
