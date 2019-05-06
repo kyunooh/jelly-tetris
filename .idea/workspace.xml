@@ -1,15 +1,735 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectFrameBounds">
+  <component name="ChangeListManager">
+    <list default="true" id="b673ba88-1220-47cb-98ec-65c38ae087d1" name="Default Changelist" comment="Merge branch 'master' of https://github.com/kyunooh/jelly-tetris&#10;&#10;# Conflicts:&#10;#&#9;src/playview/PlayView.js">
+      <change afterPath="$PROJECT_DIR$/src/tetris/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tetris/operations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tetris/types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/information/InformationWindowContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/information/InformationWindowContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/playview/PlayViewContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/playview/PlayViewContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/tetrisReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/tetrisReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sagas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/sagas.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tetris/operations.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3336">
+              <caret line="43" column="21" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="SCSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>delete</find>
+      <find>deletedLines</find>
+      <find>removed</find>
+      <find>level</find>
+      <find>%</find>
+      <find>state</find>
+      <find>[DRO</find>
+      <find>doReset</find>
+      <find>...initialState(1)</find>
+      <find>initialState(1)</find>
+      <find>reserved</find>
+      <find>initializeStore</find>
+      <find>levels</find>
+      <find>JELLY_TETRIS</find>
+      <find>reset</find>
+      <find>doRo</find>
+      <find>isEndTick</find>
+      <find>doRotate</find>
+      <find>doHold</find>
+      <find>state =</find>
+      <find>state.holdBlock =</find>
+      <find>state.</find>
+      <find>newBlock</find>
+      <find>holdBlock</find>
+      <find>nextBlock</find>
+      <find>console.log</find>
+      <find>initi</find>
+      <find>tick(</find>
+      <find>tick()</find>
+      <find>initialState</find>
+    </findStrings>
+    <replaceStrings>
+      <replace />
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/playview/Playview.js" />
+        <option value="$PROJECT_DIR$/src/reducers/grid.js" />
+        <option value="$PROJECT_DIR$/src/withReducer.js" />
+        <option value="$PROJECT_DIR$/src/playview/GameOver.scss" />
+        <option value="$PROJECT_DIR$/src/playview/GameOver.js" />
+        <option value="$PROJECT_DIR$/src/modules/tetris.js" />
+        <option value="$PROJECT_DIR$/src/reducers/gridReducer.js" />
+        <option value="$PROJECT_DIR$/src/App.test.js" />
+        <option value="$PROJECT_DIR$/src/playview/Row.js" />
+        <option value="$PROJECT_DIR$/src/playview/PlayView.scss" />
+        <option value="$PROJECT_DIR$/src/rootReducer.js" />
+        <option value="$PROJECT_DIR$/src/reducers/informationReducer.js" />
+        <option value="$PROJECT_DIR$/src/informations/InformationContainer.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/information/InformationWindow.scss" />
+        <option value="$PROJECT_DIR$/sagas.js" />
+        <option value="$PROJECT_DIR$/src/playview/PlayView.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/public/CNAME" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/initializeStore.js" />
+        <option value="$PROJECT_DIR$/src/information/InformationWindow.js" />
+        <option value="$PROJECT_DIR$/src/tetris/types.js" />
+        <option value="$PROJECT_DIR$/src/tetris/actions.js" />
+        <option value="$PROJECT_DIR$/src/reducers/operations.js" />
+        <option value="$PROJECT_DIR$/src/playview/PlayViewContainer.js" />
+        <option value="$PROJECT_DIR$/src/information/InformationWindowContainer.js" />
+        <option value="$PROJECT_DIR$/src/reducers/tetrisReducer.js" />
+        <option value="$PROJECT_DIR$/src/sagas.js" />
+        <option value="$PROJECT_DIR$/src/tetris/operations.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="2560" />
-    <option name="y" value="23" />
-    <option name="width" value="960" />
-    <option name="height" value="1177" />
+    <option name="width" value="1920" />
+    <option name="height" value="1200" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="jelly-tetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jelly-tetris" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jelly-tetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jelly-tetris" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jelly-tetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jelly-tetris" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jelly-tetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jelly-tetris" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="reducers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jelly-tetris" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jelly-tetris" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="tetris" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="full.screen.before.presentation.mode" value="true" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/tetris" />
+    </key>
+    <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/reducers/operations.js" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/App.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.App.js" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b673ba88-1220-47cb-98ec-65c38ae087d1" name="Default Changelist" comment="" />
+      <created>1556024465499</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556024465499</updated>
+      <workItem from="1556024467052" duration="7020000" />
+      <workItem from="1556113669285" duration="4800000" />
+      <workItem from="1556198636142" duration="7951000" />
+      <workItem from="1556235651550" duration="308000" />
+      <workItem from="1556279841517" duration="11724000" />
+      <workItem from="1556335179326" duration="137000" />
+      <workItem from="1556378422100" duration="11605000" />
+      <workItem from="1556423839184" duration="170000" />
+      <workItem from="1556457603682" duration="7577000" />
+      <workItem from="1556536671638" duration="584000" />
+      <workItem from="1556626955479" duration="5341000" />
+      <workItem from="1556694784872" duration="379000" />
+      <workItem from="1556805400747" duration="562000" />
+      <workItem from="1556877673750" duration="555000" />
+      <workItem from="1557138364609" duration="4135000" />
+    </task>
+    <task id="LOCAL-00001" summary="Implement move left &amp; right, remove lines">
+      <created>1556235937937</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556235937937</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fix invalid character">
+      <created>1556281864433</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1556281864433</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch 'master' of https://github.com/kyunooh/jelly-tetris&#10;&#10;# Conflicts:&#10;#&#9;src/playview/PlayView.js">
+      <created>1556282174456</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556282174457</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implement Game Over">
+      <created>1556282709183</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1556282709183</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Apply prettier">
+      <created>1556282993929</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1556282993929</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update code like more redux">
+      <created>1556287043311</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556287043311</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update code more like redux">
+      <created>1556287070930</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1556287070930</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Remove unused import">
+      <created>1556288152354</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1556288152354</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Implement rotation">
+      <created>1556294546217</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556294546217</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Remove useless console.log">
+      <created>1556294588930</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1556294588930</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Implement drop down block">
+      <created>1556383114089</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1556383114089</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Update color block by block">
+      <created>1556387214511</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1556387214511</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Apply redux saga on tick">
+      <created>1556463992557</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1556463992558</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add information windows">
+      <created>1556464204717</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556464204717</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add Information Window Container">
+      <created>1556464579159</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1556464579159</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Implement Save">
+      <created>1556464615618</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1556464615618</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Prevent click after reset">
+      <created>1556465169611</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1556465169611</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix Rotate bug">
+      <created>1556468479349</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1556468479349</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Implement hold">
+      <created>1556631085580</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1556631085580</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update meta information">
+      <created>1556631710524</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1556631710524</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add CNAME">
+      <created>1556632273758</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1556632273758</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Remove devtools">
+      <created>1557144753988</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1557144753989</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Add bgm">
+      <created>1557144766899</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1557144766900</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="62848000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="2560" y="0" width="1920" height="1200" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5496296" visible="true" weight="0.334375" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.45037037" side_tool="true" weight="0.22485518" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39833334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32944345" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3940754" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5496296" visible="true" weight="0.33438653" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.45037037" side_tool="true" weight="0.22485518" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39833334" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32944345" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3940754" />
+      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" visible="true" weight="0.25" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement move left &amp; right, remove lines" />
+    <MESSAGE value="Fix invalid character" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/kyunooh/jelly-tetris&#10;&#10;# Conflicts:&#10;#&#9;src/playview/PlayView.js" />
+    <MESSAGE value="Implement Game Over" />
+    <MESSAGE value="Apply prettier" />
+    <MESSAGE value="Update code like more redux" />
+    <MESSAGE value="Update code more like redux" />
+    <MESSAGE value="Remove unused import" />
+    <MESSAGE value="Implement rotation" />
+    <MESSAGE value="Remove useless console.log" />
+    <MESSAGE value="Implement drop down block" />
+    <MESSAGE value="Update color block by block" />
+    <MESSAGE value="Apply redux saga on tick" />
+    <MESSAGE value="Add information windows" />
+    <MESSAGE value="Add Information Window Container" />
+    <MESSAGE value="Implement Save" />
+    <MESSAGE value="Prevent click after reset" />
+    <MESSAGE value="Fix Rotate bug" />
+    <MESSAGE value="Implement hold" />
+    <MESSAGE value="Update meta information" />
+    <MESSAGE value="Add CNAME" />
+    <MESSAGE value="Remove devtools" />
+    <MESSAGE value="Add bgm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add bgm" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="9191" column="20" selection-start-line="9191" selection-start-column="13" selection-end-line="9191" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modules/tetris.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/redux-actions/es/createAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="45" column="22" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/informationReducer.js" />
+    <entry file="file://$PROJECT_DIR$/src/withReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/PlayView.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sagas.js" />
+    <entry file="file://$PROJECT_DIR$/src/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/redux/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="230" column="2" selection-start-line="230" selection-start-column="2" selection-end-line="230" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rootReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/CNAME">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="6" column="20" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/GameOver.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="2" column="2" selection-start-line="2" selection-start-column="2" selection-end-line="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/information/InformationWindow.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/Row.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="23" column="7" lean-forward="true" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/GameOver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="1" column="21" selection-start-line="1" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/PlayView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="15" lean-forward="true" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/operations.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/playview/PlayViewContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="24" lean-forward="true" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/information/InformationWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/initializeStore.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/information/InformationWindowContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sagas.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/types.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/tetrisReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/actions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tetris/operations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3336">
+          <caret line="43" column="21" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

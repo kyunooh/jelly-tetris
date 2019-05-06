@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import React from "react";
 import InformationWindow from "./InformationWindow";
-import * as tetrisReducer from "../reducers/tetrisReducer";
+import * as tetrisActions from "../tetris/actions";
+
 
 const InformationWindowContainer = props => {
 
@@ -25,6 +26,6 @@ const InformationWindowContainer = props => {
 export default connect(
   state => ({...state.tetrisReducer }),
   dispatch => ({
-    reset: () => dispatch(tetrisReducer.reset())
+    reset: () => dispatch(tetrisActions.reset())
   })
 )(InformationWindowContainer);

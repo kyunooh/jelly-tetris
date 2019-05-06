@@ -1,5 +1,5 @@
 import { all, takeLatest, select, put } from "redux-saga/effects";
-import {tick} from "./reducers/tetrisReducer";
+import {tick} from "./tetris/actions";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
