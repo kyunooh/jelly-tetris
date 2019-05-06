@@ -32,7 +32,7 @@ const InformationWindow = props => {
       <button className="reset-button" onClick={props.reset}>Reset</button>
       <div id="audio-panel">
         <audio controls autoPlay={true} loop>
-          <source src="/tetris.ogg" type="audio/ogg; codecs=vorbis"/>
+          <source src="/jelly-tetris/tetris.ogg" type="audio/ogg; codecs=vorbis"/>
         </audio>
       </div>
     </div>
