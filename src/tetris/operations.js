@@ -1,7 +1,10 @@
 import { tick } from "./actions";
 
 const JELLY_TETRIS = "jelly-tetris";
-export const initialState = (state) => {
+const whoosh = new Audio("http://jellyms.kr/jelly-tetris/whoosh.wav");
+const kick = new Audio("http://jellyms.kr/jelly-tetris/kick.wav");
+
+export const initialState = state => {
   const existTetris = localStorage.getItem(JELLY_TETRIS);
   if (existTetris) {
     return JSON.parse(existTetris);
@@ -110,6 +113,7 @@ const rotateBlock = (state, rotatedTetrimino, cStep = 0, rStep = 0) => {
   state.grid = [...newGrid];
 };
 export const doRotate = state => {
+  whoosh.play();
   const rotatedTetrimino = [];
   const w = state.currentBlock.length;
   const h = state.currentBlock[0].length;
@@ -176,7 +180,6 @@ export const doDrop = state => {
     state = doTick(state);
   }
 
-  playBgm(state);
   return { ...state };
 };
 
@@ -194,6 +197,7 @@ const playBgm = state => {
 
 export const doTick = state => {
   localStorage.setItem(JELLY_TETRIS, JSON.stringify(state));
+  playBgm(state);
   let newGrid = copyGrid(state.grid);
   if (state.newBlock) {
     createNewBlock(newGrid, state);
@@ -209,6 +213,7 @@ export const doTick = state => {
     for (let column = 0; column < newGrid[row].length; column++) {
       if (newGrid[row][column] > 10) {
         if (isEndTick(row, state, newGrid, column)) {
+          if(!state.gameOver) kick.play();
           newGrid = copyGrid(state.grid);
           state.newBlock = true;
           // Remove Filled Block

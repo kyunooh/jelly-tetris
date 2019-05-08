@@ -38,7 +38,6 @@ const InformationWindow = props => {
           controls
           onPause={props.pauseBgm}
           onPlay={props.playBgm}
-          autoPlay={true}
           loop
         >
           <source
