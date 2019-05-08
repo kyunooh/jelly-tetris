@@ -1,7 +1,7 @@
-import {tick} from "./actions";
+import { tick } from "./actions";
 
 const JELLY_TETRIS = "jelly-tetris";
-export const initialState = () => {
+export const initialState = (state) => {
   const existTetris = localStorage.getItem(JELLY_TETRIS);
   if (existTetris) {
     return JSON.parse(existTetris);
@@ -19,6 +19,7 @@ export const initialState = () => {
     nextBlock: [],
     nextBlockNumber: -1,
     holdBlock: [],
+    playBgm: state ? state.playBgm : true,
     temporaryHoldBlockNumber: 0,
     currentBlockLocation: [0, 0],
     grid: Array(16).fill(Array(10).fill(0))
@@ -41,7 +42,7 @@ const tetriminos = {
 export const doReset = state => {
   clearInterval(state.reservedTick);
   localStorage.setItem(JELLY_TETRIS, "");
-  return initialState();
+  return initialState(state);
 };
 const setCurrentLocation = state => {
   let findLeftUpper = false;
@@ -122,7 +123,7 @@ export const doRotate = state => {
     rotatedTetrimino.push(row);
   }
   rotateBlock(state, rotatedTetrimino);
-  return {...state};
+  return { ...state };
 };
 const createNewBlock = (grid, state) => {
   if (state.currentBlock.length === 0) {
@@ -140,7 +141,6 @@ const createNewBlock = (grid, state) => {
     state.nextBlockNumber = Math.floor(Math.random() * 7);
     const block = tetriminos[state.nextBlockNumber];
     state.nextBlock = [...block];
-
   } else {
     state.currentBlock = [...state.nextBlock];
     state.currentBlockNumber = state.nextBlockNumber;
@@ -175,8 +175,23 @@ export const doDrop = state => {
   while (state.dropping) {
     state = doTick(state);
   }
-  return {...state};
+
+  playBgm(state);
+  return { ...state };
 };
+
+const playBgm = state => {
+  const bgmEl = document.getElementById("bgm-audio");
+  if (bgmEl) {
+    bgmEl.playbackRate = 0.96 + 0.04 * state.levels;
+    if (state.playBgm) {
+      bgmEl.play();
+    } else {
+      bgmEl.pause();
+    }
+  }
+};
+
 export const doTick = state => {
   localStorage.setItem(JELLY_TETRIS, JSON.stringify(state));
   let newGrid = copyGrid(state.grid);
@@ -188,7 +203,7 @@ export const doTick = state => {
     state.hold = false;
     state.grid = newGrid;
     setCurrentLocation(state);
-    return {...state};
+    return { ...state };
   }
   for (let row = newGrid.length - 1; row >= 0; row--) {
     for (let column = 0; column < newGrid[row].length; column++) {
@@ -219,7 +234,7 @@ export const doTick = state => {
 
   state.grid = newGrid;
   setCurrentLocation(state);
-  return {...state};
+  return { ...state };
 };
 const removeLines = (grid, row, state) => {
   grid.splice(row, 1);
@@ -255,7 +270,7 @@ export const doMoveLeft = state => {
 
   if (needChange) state.grid = newGrid;
   setCurrentLocation(state);
-  return {...state};
+  return { ...state };
 };
 export const doMoveRight = state => {
   const newGrid = copyGrid(state.grid);
@@ -278,10 +293,10 @@ export const doMoveRight = state => {
 
   if (needChange) state.grid = newGrid;
   setCurrentLocation(state);
-  return {...state};
+  return { ...state };
 };
-export const doHold = (state) => {
-  if (!state.canHold) return {...state};
+export const doHold = state => {
+  if (!state.canHold) return { ...state };
   state.canHold = false;
   state.hold = true;
   for (let r = 0; r < state.grid.length; r++) {
@@ -293,5 +308,15 @@ export const doHold = (state) => {
   state.newBlock = true;
   state = doTick(state);
   state.holdBlock = tetriminos[state.temporaryHoldBlockNumber];
+  return state;
+};
+
+export const doPlayBgm = state => {
+  state.playBgm = true;
+  return state;
+};
+
+export const doPauseBgm = state => {
+  state.playBgm = false;
   return state;
 };

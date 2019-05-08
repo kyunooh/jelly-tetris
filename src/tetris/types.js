@@ -5,5 +5,6 @@ export const ROTATE = "jelly-tetris/rotate";
 export const DROP = "jelly-tetris/drop";
 export const RESET = "jelly-tetris/reset";
 export const HOLD = "jelly-tetris/hold";
-
+export const PLAY_BGM = "jelly-tetris/playBgm";
+export const PAUSE_BGM = "jelly-tetris/pauseBgm";
 

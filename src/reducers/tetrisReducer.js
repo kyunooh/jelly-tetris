@@ -1,7 +1,27 @@
-import {handleActions} from "redux-actions";
-import {DROP, HOLD, MOVE_LEFT, MOVE_RIGHT, RESET, ROTATE, TICK} from "../tetris/types";
-import {doDrop, doHold, doMoveLeft, doMoveRight, doReset, doRotate, doTick, initialState} from "../tetris/operations";
-
+import { handleActions } from "redux-actions";
+import {
+  DROP,
+  HOLD,
+  MOVE_LEFT,
+  MOVE_RIGHT,
+  PAUSE_BGM,
+  PLAY_BGM,
+  RESET,
+  ROTATE,
+  TICK
+} from "../tetris/types";
+import {
+  doDrop,
+  doHold,
+  doMoveLeft,
+  doMoveRight,
+  doPauseBgm,
+  doPlayBgm,
+  doReset,
+  doRotate,
+  doTick,
+  initialState
+} from "../tetris/operations";
 
 export default handleActions(
   {
@@ -11,7 +31,9 @@ export default handleActions(
     [ROTATE]: state => doRotate(state),
     [DROP]: state => doDrop(state),
     [RESET]: state => doReset(state),
-    [HOLD]: state => doHold(state)
+    [HOLD]: state => doHold(state),
+    [PLAY_BGM]: state => doPlayBgm(state),
+    [PAUSE_BGM]: state => doPauseBgm(state)
   },
   initialState()
 );

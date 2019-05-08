@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as terisActions from "../tetris/actions";
+import * as tetrisActions from "../tetris/actions";
 import PlayView from "./PlayView";
 import React from "react";
 
@@ -48,12 +48,12 @@ const PlayViewContainer = props => {
 export default connect(
   state => ({ ...state.tetrisReducer }),
   dispatch => ({
-    tick: () => dispatch(terisActions.tick()),
-    moveLeft: () => dispatch(terisActions.moveLeft()),
-    moveRight: () => dispatch(terisActions.moveRight()),
-    rotate: () => dispatch(terisActions.rotate()),
-    drop: () => dispatch(terisActions.drop()),
+    tick: () => dispatch(tetrisActions.tick()),
+    moveLeft: () => dispatch(tetrisActions.moveLeft()),
+    moveRight: () => dispatch(tetrisActions.moveRight()),
+    rotate: () => dispatch(tetrisActions.rotate()),
+    drop: () => dispatch(tetrisActions.drop()),
     tickTimer: levels => dispatch({ type: "WATCH_TICK", levels }),
-    hold: () => dispatch(terisActions.hold())
+    hold: () => dispatch(tetrisActions.hold())
   })
 )(PlayViewContainer);
