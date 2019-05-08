@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/jelly-tetris/precache-manifest.39054020423548163be23f8670f59cf2.js"
+  "/jelly-tetris/precache-manifest.fb6125c9dc88294afea0dc6e4259fd87.js"
 );
 
 self.addEventListener('message', (event) => {
