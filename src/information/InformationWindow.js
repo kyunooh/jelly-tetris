@@ -24,7 +24,7 @@ const InformationWindow = props => {
       <Row grid={blockGird(props.nextBlock)} />
       <div>NEXT</div>
       <Row grid={blockGird(props.holdBlock)} />
-      <div>HOLD</div>
+      <div>HOLD (shift)</div>
 
       <div id="removed-lines">Lines: {props.removedLines}</div>
       <div id="levels">Level: {props.levels}</div>
