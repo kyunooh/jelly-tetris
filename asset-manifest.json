@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/jelly-tetris/static/css/main.bca1f7cd.chunk.css",
-    "main.js": "/jelly-tetris/static/js/main.204ecc9a.chunk.js",
-    "main.js.map": "/jelly-tetris/static/js/main.204ecc9a.chunk.js.map",
+    "main.js": "/jelly-tetris/static/js/main.4ef480d6.chunk.js",
+    "main.js.map": "/jelly-tetris/static/js/main.4ef480d6.chunk.js.map",
     "runtime~main.js": "/jelly-tetris/static/js/runtime~main.d1a7a9cd.js",
     "runtime~main.js.map": "/jelly-tetris/static/js/runtime~main.d1a7a9cd.js.map",
     "static/js/2.15d25e2a.chunk.js": "/jelly-tetris/static/js/2.15d25e2a.chunk.js",
     "static/js/2.15d25e2a.chunk.js.map": "/jelly-tetris/static/js/2.15d25e2a.chunk.js.map",
     "index.html": "/jelly-tetris/index.html",
-    "precache-manifest.46e9ccc8a75bde57d391d3952f51c587.js": "/jelly-tetris/precache-manifest.46e9ccc8a75bde57d391d3952f51c587.js",
+    "precache-manifest.3adedc572427ba904531ced5a4a8669b.js": "/jelly-tetris/precache-manifest.3adedc572427ba904531ced5a4a8669b.js",
     "service-worker.js": "/jelly-tetris/service-worker.js",
     "static/css/main.bca1f7cd.chunk.css.map": "/jelly-tetris/static/css/main.bca1f7cd.chunk.css.map"
   }
