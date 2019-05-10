@@ -1,5 +1,5 @@
 import React from "react";
-import { object } from "prop-types";
+import PropTypes from "prop-types";
 
 const withReducer = (key, reducer) => WrappedComponent => {
   const Extended = (props, context) => {
@@ -8,7 +8,7 @@ const withReducer = (key, reducer) => WrappedComponent => {
   };
 
   Extended.contextTypes = {
-    store: object
+    store: PropTypes.object
   };
 
   return Extended;
