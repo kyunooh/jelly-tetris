@@ -1,14 +1,11 @@
-import { applyMiddleware, compose, createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import createReducer from "./rootReducer";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas";
 
 const initializeStore = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(
-    createReducer(),
-    compose(applyMiddleware(sagaMiddleware))
-  );
+  const store = createStore(createReducer(), applyMiddleware(sagaMiddleware));
   store.asyncReducers = {};
 
   store.injectReducer = (key, reducer) => {
