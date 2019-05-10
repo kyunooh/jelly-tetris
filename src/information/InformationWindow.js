@@ -1,6 +1,6 @@
 import React from "react";
 import "./InformationWindow.scss";
-import Row from "../playview/Row";
+import Grid from "../playview/Grid";
 
 const InformationWindow = props => {
   const blockGird = block => {
@@ -21,9 +21,9 @@ const InformationWindow = props => {
 
   return (
     <div id="information-window">
-      <Row grid={blockGird(props.nextBlock)} />
+      <Grid grid={blockGird(props.nextBlock)} />
       <div>NEXT</div>
-      <Row grid={blockGird(props.holdBlock)} />
+      <Grid grid={blockGird(props.holdBlock)} />
       <div>HOLD (shift)</div>
 
       <div id="removed-lines">Lines: {props.removedLines}</div>
