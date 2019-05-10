@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import initializeStore from "./initializeStore";
 import {Provider} from "react-redux";
 import PlayViewContainer from "./playview/PlayViewContainer";
