@@ -4,19 +4,21 @@ import InformationWindow from "./InformationWindow";
 import * as tetrisActions from "../tetris/actions";
 
 const InformationWindowContainer = props => {
+  const preventFocus = React.createRef();
+
   const handleReset = () => {
     props.reset();
-    document.getElementById("prevent-reset").focus();
+    preventFocus.current.focus();
   };
 
   const playBgm = () => {
     props.playBgm();
-    document.getElementById("prevent-reset").focus();
+    preventFocus.current.focus();
   };
 
   const pauseBgm = () => {
     props.pauseBgm();
-    document.getElementById("prevent-reset").focus();
+    preventFocus.current.focus();
   };
 
   return (
@@ -25,6 +27,7 @@ const InformationWindowContainer = props => {
       holdBlock={props.holdBlock}
       removedLines={props.removedLines}
       levels={props.levels}
+      preventFocus={preventFocus}
       playBgm={playBgm}
       pauseBgm={pauseBgm}
       reset={handleReset}
