@@ -38,17 +38,13 @@ const InformationWindow = props => {
   );
 };
 
+const PADDING = 1;
 const BlockGrid = block => {
-  const padding = 1;
-  const blockGrid = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-  ];
+  const blockGrid = Array(4).fill(Array(5).fill(0));
+
   for (let r = 0; r < block.length; r++) {
     for (let c = 0; c < block[r].length; c++) {
-      blockGrid[r + padding][c + padding] = block[r][c];
+      blockGrid[r + PADDING][c + PADDING] = block[r][c];
     }
   }
   return blockGrid;
