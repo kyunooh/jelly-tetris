@@ -7,4 +7,4 @@ export const RESET = "jelly-tetris/reset";
 export const HOLD = "jelly-tetris/hold";
 export const PLAY_BGM = "jelly-tetris/playBgm";
 export const PAUSE_BGM = "jelly-tetris/pauseBgm";
-
+export const TICK_TIMER = "jelly-tetris/tickTimer";

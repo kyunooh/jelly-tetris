@@ -53,7 +53,7 @@ export default connect(
     moveRight: () => dispatch(tetrisActions.moveRight()),
     rotate: () => dispatch(tetrisActions.rotate()),
     drop: () => dispatch(tetrisActions.drop()),
-    tickTimer: levels => dispatch({ type: "WATCH_TICK", levels }),
+    tickTimer: () => dispatch(tetrisActions.tickTimer()),
     hold: () => dispatch(tetrisActions.hold())
   })
 )(PlayViewContainer);

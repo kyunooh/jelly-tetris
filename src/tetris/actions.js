@@ -8,7 +8,7 @@ import {
   PLAY_BGM,
   RESET,
   ROTATE,
-  TICK
+  TICK, TICK_TIMER
 } from "./types";
 
 export const tick = createAction(TICK);
@@ -20,3 +20,4 @@ export const reset = createAction(RESET);
 export const hold = createAction(HOLD);
 export const playBgm = createAction(PLAY_BGM);
 export const pauseBgm = createAction(PAUSE_BGM);
+export const tickTimer = createAction(TICK_TIMER);
