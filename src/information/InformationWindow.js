@@ -2,41 +2,62 @@ import React from "react";
 import "./InformationWindow.scss";
 import Grid from "../playview/Grid";
 
-const InformationWindow = props => {
-  return (
-    <div id="information-window">
-      <Grid grid={BlockGrid(props.nextBlock)} />
-      <div>NEXT</div>
-      <Grid grid={BlockGrid(props.holdBlock)} />
-      <div>HOLD (shift)</div>
+class InformationWindow extends React.Component {
+  componentDidUpdate() {
+    this.setBgm();
+  }
 
-      <div id="removed-lines">Lines: {props.removedLines}</div>
-      <div id="levels">Level: {props.levels}</div>
-      <button
-        id="prevent-reset"
-        ref={props.preventFocus}
-        style={{ width: "0px", height: "0px" }}
-      />
-      <button className="reset-button" onClick={props.reset}>
-        Reset
-      </button>
-      <div id="audio-panel">
-        <audio
-          id="bgm-audio"
-          controls
-          onPause={props.pauseBgm}
-          onPlay={props.playBgm}
-          loop
-        >
-          <source
-            src="http://jellyms.kr/jelly-tetris/tetris.ogg"
-            type="audio/ogg; codecs=vorbis"
-          />
-        </audio>
+  setBgm() {
+    const bgmEl = this.props.bgmAudio.current;
+    console.log(bgmEl);
+    if (bgmEl) {
+      bgmEl.playbackRate = 0.96 + 0.04 * this.props.levels;
+      if (this.props.playBgm) {
+        bgmEl.play();
+      } else {
+        bgmEl.pause();
+      }
+    }
+  };
+
+
+  render() {
+    return (
+      <div id="information-window">
+        <Grid grid={BlockGrid(this.props.nextBlock)} />
+        <div>NEXT</div>
+        <Grid grid={BlockGrid(this.props.holdBlock)} />
+        <div>HOLD (shift)</div>
+
+        <div id="removed-lines">Lines: {this.props.removedLines}</div>
+        <div id="levels">Level: {this.props.levels}</div>
+        <button
+          id="prevent-reset"
+          ref={this.props.preventFocus}
+          style={{ width: "0px", height: "0px" }}
+        />
+        <button className="reset-button" onClick={this.props.reset}>
+          Reset
+        </button>
+        <div id="audio-panel">
+          <audio
+            id="bgm-audio"
+            ref={this.props.bgmAudio}
+            controls
+            onPause={this.props.pauseBgm}
+            onPlay={this.props.playBgm}
+            loop
+          >
+            <source
+              src="http://jellyms.kr/jelly-tetris/tetris.ogg"
+              type="audio/ogg; codecs=vorbis"
+            />
+          </audio>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const PADDING = 1;
 const BlockGrid = block => {

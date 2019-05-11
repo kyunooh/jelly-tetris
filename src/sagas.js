@@ -1,6 +1,6 @@
 import { all, takeLatest, select, put } from "redux-saga/effects";
-import {tick} from "./tetris/actions";
-import {TICK_TIMER} from "./tetris/types";
+import {tick} from "./playview/actions";
+import {TICK_TIMER} from "./playview/types";
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 

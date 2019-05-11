@@ -5,7 +5,7 @@ import GameOver from "./GameOver";
 
 function PlayView(props) {
   const grid = props.grid;
-  props.tickTimer(props.levels);
+  props.tickTimer( );
 
   document.onkeydown = e => {
     if (e.key === "ArrowLeft") {

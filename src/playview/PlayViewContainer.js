@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import * as tetrisActions from "../tetris/actions";
+import * as tetrisActions from "./actions";
 import PlayView from "./PlayView";
 import React from "react";
 
@@ -20,8 +20,8 @@ const PlayViewContainer = props => {
     props.drop();
   };
 
-  const tickTimer = levels => {
-    props.tickTimer(levels);
+  const tickTimer = () => {
+    props.tickTimer();
   };
 
   const handleHold = () => {
@@ -40,7 +40,6 @@ const PlayViewContainer = props => {
       grid={props.grid}
       levels={props.levels}
       gameOver={props.gameOver}
-      reservedTick={props.reservedTick}
     />
   );
 };
