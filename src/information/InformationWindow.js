@@ -40,7 +40,13 @@ const InformationWindow = props => {
 
 const PADDING = 1;
 const BlockGrid = block => {
-  const blockGrid = Array(4).fill(Array(5).fill(0));
+  const emptyRow = Array(5).fill(0);
+  const blockGrid = [
+    [...emptyRow],
+    [...emptyRow],
+    [...emptyRow],
+    [...emptyRow]
+  ];
 
   for (let r = 0; r < block.length; r++) {
     for (let c = 0; c < block[r].length; c++) {
