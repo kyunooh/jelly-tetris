@@ -1,11 +1,24 @@
-import { applyMiddleware, createStore } from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import createReducer from "./rootReducer";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas";
 
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+
+const sagaMiddleware = createSagaMiddleware();
+
+const enhancer = composeEnhancers(
+  applyMiddleware(sagaMiddleware),
+  // other store enhancers if any
+);
+
 const initializeStore = () => {
-  const sagaMiddleware = createSagaMiddleware();
-  const store = createStore(createReducer(), applyMiddleware(sagaMiddleware));
+  const store = createStore(createReducer(), enhancer);
   store.asyncReducers = {};
 
   store.injectReducer = (key, reducer) => {
