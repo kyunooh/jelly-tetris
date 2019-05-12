@@ -18,8 +18,7 @@ class InformationWindow extends React.Component {
         bgmEl.pause();
       }
     }
-  };
-
+  }
 
   render() {
     return (
@@ -53,6 +52,18 @@ class InformationWindow extends React.Component {
               type="audio/ogg; codecs=vorbis"
             />
           </audio>
+        </div>
+        <div>
+          <a
+            href="https://github.com/kyunooh/jelly-tetris"
+            style={{
+              "text-decoration": "none",
+              color: "#AAF",
+              "font-size": "20px"
+            }}
+          >
+            Github
+          </a>
         </div>
       </div>
     );
