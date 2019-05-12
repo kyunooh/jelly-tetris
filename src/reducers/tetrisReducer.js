@@ -26,7 +26,7 @@ export const initialState = state => {
     nextBlock: [],
     nextBlockNumber: -1,
     holdBlock: [],
-    playBgm: state ? state.playBgm : true,
+    isPlayBgm: state ? state.isPlayBgm : true,
     temporaryHoldBlockNumber: 0,
     currentBlockLocation: [0, 0],
     grid: Array(16).fill(Array(10).fill(0))

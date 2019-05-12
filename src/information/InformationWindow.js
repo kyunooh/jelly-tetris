@@ -9,10 +9,9 @@ class InformationWindow extends React.Component {
 
   setBgm() {
     const bgmEl = this.props.bgmAudio.current;
-    console.log(bgmEl);
     if (bgmEl) {
       bgmEl.playbackRate = 0.96 + 0.04 * this.props.levels;
-      if (this.props.playBgm) {
+      if (this.props.isPlayBgm) {
         bgmEl.play();
       } else {
         bgmEl.pause();
@@ -57,9 +56,9 @@ class InformationWindow extends React.Component {
           <a
             href="https://github.com/kyunooh/jelly-tetris"
             style={{
-              "text-decoration": "none",
+              "textDecoration": "none",
               color: "#AAF",
-              "font-size": "20px"
+              "fontSize": "20px"
             }}
           >
             Github

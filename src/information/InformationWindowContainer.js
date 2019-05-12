@@ -29,6 +29,7 @@ const InformationWindowContainer = props => {
       holdBlock={props.holdBlock}
       removedLines={props.removedLines}
       levels={props.levels}
+      isPlayBgm={props.isPlayBgm}
       preventFocus={preventFocus}
       bgmAudio={bgmAudio}
       playBgm={playBgm}

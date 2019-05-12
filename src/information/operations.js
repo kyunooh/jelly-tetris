@@ -1,14 +1,14 @@
-import {initialState, JELLY_TETRIS} from "../reducers/tetrisReducer";
+import { initialState, JELLY_TETRIS } from "../reducers/tetrisReducer";
 
 export const doPlayBgm = state => {
-  const newState = {...state};
-  newState.playBgm = true;
+  const newState = { ...state };
+  newState.isPlayBgm = true;
   return newState;
 };
 
 export const doPauseBgm = state => {
-  const newState = {...state};
-  newState.playBgm = false;
+  const newState = { ...state };
+  newState.isPlayBgm = false;
   return newState;
 };
 
