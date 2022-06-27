@@ -1,6 +1,6 @@
 import {JELLY_TETRIS} from "../../reducers/tetrisReducer";
 
-const kick = new Audio("http://jellyms.kr/jelly-tetris/kick.wav");
+const kick = new Audio("https://kyunooh.github.io/jelly-tetris/kick.wav");
 
 const PADDING = 3;
 // I J L O T Z S
