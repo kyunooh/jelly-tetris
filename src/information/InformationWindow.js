@@ -47,7 +47,7 @@ class InformationWindow extends React.Component {
             loop
           >
             <source
-              src="http://jellyms.kr/jelly-tetris/tetris.ogg"
+              src="https://kyunooh.github.io/jelly-tetris/tetris.ogg"
               type="audio/ogg; codecs=vorbis"
             />
           </audio>
