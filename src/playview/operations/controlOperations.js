@@ -1,6 +1,6 @@
 import {copyGrid, doTick, setCurrentLocation, tetriminos} from "./gridOperations";
 
-const whoosh = new Audio("http://jellyms.kr/jelly-tetris/whoosh.wav");
+const whoosh = new Audio("https://kyunooh.github.io/jelly-tetris/whoosh.wav");
 
 const cellIsCurrentBlock = cell => {
   return cell > 10;
